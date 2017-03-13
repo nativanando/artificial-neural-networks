@@ -5,13 +5,13 @@ import time
 
 # cria-se um conjunto de dados (dataset) para treinamento
 # os valores esperados para o treinamento supervisionado
-dataset = SupervisedDataSet(2,1)
+dataset = SupervisedDataSet(2, 1)
 
 # tabela verdade do XOR
-dataset.addSample([1,1],[0])
-dataset.addSample([1,0],[1])
-dataset.addSample([0,1],[1])
-dataset.addSample([0,0],[0])
+dataset.addSample([1, 1], [0])
+dataset.addSample([1, 0], [1])
+dataset.addSample([0, 1], [1])
+dataset.addSample([0, 0], [0])
 
 '''
 Construir a rede utilizando a função buildNetwork
@@ -30,13 +30,13 @@ diminuir o perigo da instabilidade.
 '''
 trainer = BackpropTrainer(network, dataset, learningrate=0.01, momentum=0.99)
 
-inicio = time.time() #tempo de execução do treinamento
+inicio = time.time()  # tempo de execução do treinamento
 
-for epoch in range(0, 1000): # treina por 1000 iterações para ajuste de pesos
+for epoch in range(0, 1000):  # treina por 1000 iterações para ajuste de pesos
     trainer.train()
 
 fim = time.time()
-print ('tempo de treinamento', fim - inicio)
+print('tempo de treinamento', fim - inicio)
 '''
 Outras formas de treinar:
     trainer.trainEpochs(1000)
@@ -44,22 +44,22 @@ Outras formas de treinar:
 '''
 
 # Agora iremos testar a rede com um conjunto de dados
-#testando com os mesmos dados
-test_data = SupervisedDataSet(2,1)
-test_data.addSample([1,1],[0])
-test_data.addSample([1,0],[1])
-test_data.addSample([0,1],[1])
-test_data.addSample([0,0],[0])
+# testando com os mesmos dados
+test_data = SupervisedDataSet(2, 1)
+test_data.addSample([1, 1], [0])
+test_data.addSample([1, 0], [1])
+test_data.addSample([0, 1], [1])
+test_data.addSample([0, 0], [0])
 # verbose=True indica que deve ser impressas mensagens
 trainer.testOnData(test_data, verbose=True)
 
-#testando com dados arbitrários para avaliar a capacidade de ajuste aos padrões
-print ('testando segunda lista de parametros')
-test_data2 = SupervisedDataSet(2,1)
-test_data2.addSample([0,1], [0]) #saida 1 //erro //correct é a sequencia colocada e out e a saída da rede
-test_data2.addSample([0,1], [1]) #saida 1 //ok
-test_data2.addSample([0,0], [1]) #saida 0 //erro
-test_data2.addSample([1,1], [0]) #saida 0 /ok
+# testando com dados arbitrários para avaliar a capacidade de ajuste aos padrões
+print('testando segunda lista de parametros')
+test_data2 = SupervisedDataSet(2, 1)
+test_data2.addSample([0, 1], [0])  # saida 1 //erro //correct é a sequencia colocada e out e a saída da rede
+test_data2.addSample([0, 1], [1])  # saida 1 //ok
+test_data2.addSample([0, 0], [1])  # saida 0 //erro
+test_data2.addSample([1, 1], [0])  # saida 0 /ok
 resultado = trainer.testOnData(test_data2, verbose=True)
 
 '''
@@ -80,6 +80,3 @@ error:  0.00000000
 ('Average error:', 0.2499999991877361)
 ('Max error:', 0.49999999874645429, 'Median error:', 0.49999999800449013)
 '''
-
-
-

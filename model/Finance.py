@@ -4,23 +4,23 @@ import matplotlib.pyplot as plt
 import numpy as np
 import subprocess
 
-
 yahoo = Share('AAPL')
-print (yahoo.get_open())
-print (yahoo.get_price())
-print (yahoo.get_trade_datetime())
+print(yahoo.get_open())
+print(yahoo.get_price())
+print(yahoo.get_trade_datetime())
 
 yahoo.refresh()
-print ('refresh')
-print (yahoo.get_price())
+print('refresh')
+print(yahoo.get_price())
 
-dadosHistoricos = yahoo.get_historical('2017-02-01' , '2017-05-29')
-pprint (dadosHistoricos.__len__())
+dadosHistoricos = yahoo.get_historical('2017-02-01', '2017-05-29')
+pprint(dadosHistoricos.__len__())
 
 
 def getDadosHistoricos():
     pprint(dadosHistoricos)
-    print ('teste')
+    print('teste')
+
 
 def plotaGrafico(data1, data2):
     x = 10 * np.array(range(len(data1)))
@@ -37,10 +37,8 @@ def plotaGrafico(data1, data2):
     plt.savefig("test.png")
     return_code = subprocess.call('gimp test.png', shell=True)
 
+
 data1 = [10, 5, 2, 4, 6, 8]
 data2 = [1, 2, 4, 8, 7, 4]
 getDadosHistoricos()
 plotaGrafico(data1, data2)
-
-
-
