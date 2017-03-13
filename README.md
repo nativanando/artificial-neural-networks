@@ -1,5 +1,5 @@
 # Rede Neurais Artificiais + Python
-Aplicação de Redes Neurais Artificais, utilizando a biblioteca PyBrain como auxílio no desenvolvimento.
+Redes Neurais Artificais utilizando a biblioteca PyBrain como auxílio no desenvolvimento.
 
 ## Redes implementadas
 
