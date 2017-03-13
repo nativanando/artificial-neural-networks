@@ -28,7 +28,7 @@ def plotaGrafico(data1, data2):
     plt.plot(x, data1, 'k:', color='orange')  # linha pontilha orange
     plt.plot(x, data2, 'r^')  # red triangulo
     plt.plot(x, data2, 'k--', color='blue')  # linha tracejada azul
-    plt.axis([-10, 60, 0, 11])
+    plt.axis([0, 50, 0, 11])
     plt.title("Mais incrementado")
     plt.grid(True)
     plt.xlabel("eixo horizontal")
