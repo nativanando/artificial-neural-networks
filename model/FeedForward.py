@@ -1,6 +1,8 @@
 from pybrain.structure import FeedForwardNetwork
 from pybrain.structure import LinearLayer, SigmoidLayer
 from pybrain.structure import FullConnection
+from pybrain.datasets import SupervisedDataSet
+from pybrain.supervised import BackpropTrainer
 
 '''
 Rede FeedFoward utilizando 2 entradas, 3 neuronios na camada oculta e 2 saídas
@@ -22,9 +24,9 @@ class FeedFoward:
         self.defineArquitetura()
 
     def defineArquitetura(self):
-        self.camada_entrada = LinearLayer(2, name="in")
-        self.camada_oculta = SigmoidLayer(3, name="hidden")
-        self.camada_saida = LinearLayer(1, name="out")
+        self.camada_entrada = LinearLayer(self.camada_entrada, name="in")
+        self.camada_oculta = SigmoidLayer(self.camada_oculta, name="hidden")
+        self.camada_saida = LinearLayer(self.camada_saida, name="out")
         self.adicionaEstrutura()
 
     def adicionaEstrutura(self):
@@ -51,11 +53,31 @@ class FeedFoward:
         self.network.sortModules()
 
 
+dataset = SupervisedDataSet(3, 1)
+# tabela verdade do XOR
+dataset.addSample([1, 1, 1], [1])
+dataset.addSample([1, 0, 0], [0])
+dataset.addSample([0, 1, 1], [1])
+dataset.addSample([0, 0, 1], [0])
+dataset.addSample([0, 0, 0], [0])
+
 network = None
-rna = FeedFoward(network, 2, 3, 2)
+rna = FeedFoward(network, 3, 4, 1)
 print('-------------------------------------------')
-rna.network.activate([2, 1])
+rna.network.activate([2, 1, 3])
 rna.visualizaPesosSinapticos()
 print('-------------------------------------------')
-rna.network.activate([2, 2])
+rna.network.activate([2, 2, 3])
 rna.visualizaPesosSinapticos()
+
+trainer = BackpropTrainer(rna.network, dataset, learningrate=0.01, momentum=0.99)
+for epoch in range(0, 10000):  # treina por 1000 iterações para ajuste de pesos
+    trainer.train()
+
+test_data = SupervisedDataSet(3, 1)
+test_data.addSample([0, 1, 0], [0])
+test_data.addSample([1, 1, 0], [1])
+test_data.addSample([1, 0, 0], [0])
+test_data.addSample([0, 1, 1], [1])
+# verbose=True indica que deve ser impressas mensagens
+trainer.testOnData(test_data, verbose=True)
