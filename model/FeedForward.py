@@ -5,10 +5,10 @@ from pybrain.datasets import SupervisedDataSet
 from pybrain.supervised import BackpropTrainer
 
 '''
-Rede FeedFoward utilizando 2 entradas, 3 neuronios na camada oculta e 2 saídas
+MLP utilizando 3 entradas, 4 neuronios na camada oculta e 1 saídas
 A criação desta rede leva em consideração e referência a documentação oficial do PyBrain.
-A rede que implementa FeedForward em seu treinamento tem como característica a passagem contínua pelos neurônios,
-ajustando os pesos sinápticos e sem retropropagação, ou seja, não voltará ajustando os valores dada sua saída.
+A rede, que é caracterizada por um modelo FeedFoward, neste caso, teve um treinamento utilizando o algoritmo backpropagation,
+com as camadas ocultas utilizando a função de ativação sigmoide nos neurônios da camada oculta
 '''
 
 
@@ -54,7 +54,6 @@ class FeedFoward:
 
 
 dataset = SupervisedDataSet(3, 1)
-# tabela verdade do XOR
 dataset.addSample([1, 1, 1], [1])
 dataset.addSample([1, 0, 0], [0])
 dataset.addSample([0, 1, 1], [1])
@@ -79,5 +78,5 @@ test_data.addSample([0, 1, 0], [0])
 test_data.addSample([1, 1, 0], [1])
 test_data.addSample([1, 0, 0], [0])
 test_data.addSample([0, 1, 1], [1])
-# verbose=True indica que deve ser impressas mensagens
-trainer.testOnData(test_data, verbose=True)
+trainer.testOnData(test_data, verbose=True) # verbose=True indica que deve ser impressas mensagens
+
