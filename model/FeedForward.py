@@ -4,6 +4,8 @@ from pybrain.structure import FullConnection
 from pybrain.datasets import SupervisedDataSet
 from pybrain.supervised import BackpropTrainer
 
+__author__ = 'Fernando Natividade.'
+
 '''
 MLP utilizando 3 entradas, 4 neuronios na camada oculta e 1 saídas
 A criação desta rede leva em consideração e referência a documentação oficial do PyBrain.
@@ -62,21 +64,19 @@ dataset.addSample([0, 0, 0], [0])
 
 network = None
 rna = FeedFoward(network, 3, 4, 1)
-print('-------------------------------------------')
-rna.network.activate([2, 1, 3])
-rna.visualizaPesosSinapticos()
-print('-------------------------------------------')
-rna.network.activate([2, 2, 3])
-rna.visualizaPesosSinapticos()
 
-trainer = BackpropTrainer(rna.network, dataset, learningrate=0.01, momentum=0.99)
+trainer = BackpropTrainer(rna.network, dataset, verbose=True, learningrate=0.01, momentum=0.99)
 for epoch in range(0, 10000):  # treina por 1000 iterações para ajuste de pesos
-    trainer.train()
+    resultTrainer = trainer.train()
+
+print(resultTrainer)
+
+rna.visualizaPesosSinapticos()
 
 test_data = SupervisedDataSet(3, 1)
-test_data.addSample([0, 1, 0], [0])
+test_data.addSample([1, 1, 0], [1])
 test_data.addSample([1, 1, 0], [1])
 test_data.addSample([1, 0, 0], [0])
 test_data.addSample([0, 1, 1], [1])
-trainer.testOnData(test_data, verbose=True) # verbose=True indica que deve ser impressas mensagens
-
+result = trainer.testOnData(test_data, verbose=True)  # verbose=True indica que deve ser impressas mensagens
+print(result)
