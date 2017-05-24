@@ -4,6 +4,8 @@ from pybrain.structure import FullConnection
 from pybrain.datasets import SupervisedDataSet
 from pybrain.supervised import BackpropTrainer
 import timeit
+from PIL import Image
+from pytesseract import *
 
 __author__ = 'Fernando Natividade.'
 
@@ -59,6 +61,8 @@ class FeedFoward:
 ref_arquivo = open("dados.txt","r")
 dataset = SupervisedDataSet(8, 1)
 
+
+
 for linha in ref_arquivo:
     valores = linha.split()
     vetor = (valores[0].split(","))
@@ -71,7 +75,7 @@ rna = FeedFoward(network, 8, 16, 1)
 trainer = BackpropTrainer(rna.network, dataset, verbose=True, learningrate=0.01, momentum=0.99)
 start = timeit.default_timer()
 
-for epoch in range(0, 100):  # treina por 1000 iterações para ajuste de pesos
+for epoch in range(0, 1000):  # treina por 1000 iterações para ajuste de pesos
     resultTrainer = trainer.train()
 
 stop = timeit.default_timer()
