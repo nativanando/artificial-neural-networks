@@ -13,7 +13,7 @@ yahoo.refresh()
 print('refresh')
 print(yahoo.get_price())
 
-dadosHistoricos = yahoo.get_historical('2005-02-01', '2005-05-29')
+dadosHistoricos = yahoo.get_historical('2017-02-01', '2017-05-29')
 pprint(dadosHistoricos.__len__())
 
 
