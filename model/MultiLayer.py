@@ -58,7 +58,7 @@ class FeedFoward:
         self.network.sortModules()
 
 #1-doente 0-saudável     treino S-1 N-0        Peq-1 grand-0
-ref_arquivo = open("dados.txt","r")
+ref_arquivo = open("../assets/dados.txt","r")
 dataset = SupervisedDataSet(8, 1)
 
 for linha in ref_arquivo:
