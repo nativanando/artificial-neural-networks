@@ -61,13 +61,10 @@ class FeedFoward:
 ref_arquivo = open("dados.txt","r")
 dataset = SupervisedDataSet(8, 1)
 
-
-
 for linha in ref_arquivo:
     valores = linha.split()
     vetor = (valores[0].split(","))
     dataset.addSample([ vetor[0], vetor[1], vetor[2], vetor[3], vetor[4], vetor[5], vetor[6], vetor[7] ], [vetor[8]])
-
 
 network = None
 rna = FeedFoward(network, 8, 16, 1)
@@ -75,7 +72,7 @@ rna = FeedFoward(network, 8, 16, 1)
 trainer = BackpropTrainer(rna.network, dataset, verbose=True, learningrate=0.01, momentum=0.99)
 start = timeit.default_timer()
 
-for epoch in range(0, 1000):  # treina por 1000 iterações para ajuste de pesos
+for epoch in range(0, 100):  # treina por 1000 iterações para ajuste de pesos
     resultTrainer = trainer.train()
 
 stop = timeit.default_timer()

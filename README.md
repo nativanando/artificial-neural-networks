@@ -4,7 +4,7 @@ Utilização da biblioteca PyBrain para a implementação de Redes Neurais Artif
 ## Redes implementadas
 
 - Perceptron (XOR)
-- MLP com Backpropagation (Análise de um vetor com 3 padrões)
+- MLP com Backpropagation (Treinando uma base de dados a partir de um arquivo txt)
 
 ## Dependências
 
